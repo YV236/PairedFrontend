@@ -1,0 +1,108 @@
+.settings-container {
+    height: 100%;
+    overflow-y: auto;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.settings-header-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.settings-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    margin-bottom: 8px;
+}
+
+.settings-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background-color: #e4e2de;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.settings-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.settings-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.settings-status {
+    font-size: 14px;
+    color: #aaaaaa;
+}
+
+.settings-card {
+    background-color: #1c1c1d;
+    border-radius: 12px;
+    margin: 0 16px 12px 16px;
+    overflow: hidden;
+}
+
+.settings-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.settings-item:hover {
+    background-color: #2c2c2e;
+}
+
+.settings-item-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.settings-item-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-item-title {
+    font-size: 15px;
+}
+
+.settings-item-subtitle {
+    font-size: 13px;
+    color: #aaaaaa;
+    margin-top: 2px;
+}
+
+.settings-item-value {
+    font-size: 15px;
+    color: #aaaaaa;
+}

@@ -1,0 +1,47 @@
+.message-list-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.pinned-message {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(33, 33, 33, 0.85);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border-left: 3px solid #8774e1;
+    backdrop-filter: blur(5px);
+    margin-bottom: 1rem;
+}
+
+.pinned-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.pinned-title {
+    color: #8774e1;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.pinned-text {
+    color: #ffffff;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px; 
+}
+
+.messages-scroll-area {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-right: 0.5rem;
+}
