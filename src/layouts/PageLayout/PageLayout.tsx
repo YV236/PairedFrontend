@@ -19,6 +19,7 @@ export default function PageLayout({
     return (
         <div className="page-layout">
             <LeftSidebar>{left}</LeftSidebar>
+            <div className="divider"/>
 
             {main && <MainContent>{main}</MainContent>}
 

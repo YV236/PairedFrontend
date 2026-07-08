@@ -6,6 +6,11 @@
     background-color: transparent;
 }
 
+.chat-list-header{
+    display: flex;
+    flex-direction: row;
+}
+
 .chat-list-search {
     padding: 1rem 1rem 0.5rem 1rem;
     flex-shrink: 0;
