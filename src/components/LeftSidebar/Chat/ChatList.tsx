@@ -20,12 +20,15 @@ export default function ChatList({ chats, onChatSelect }: ChatListProps) {
 
     return (
         <div className="chat-list-container">
-            <div className="chat-list-search">
-                <input 
-                    type="text" 
-                    placeholder="Search" 
-                    className="search-input" 
+            <div className="chat-list-header">
                 />
+                <div className="chat-list-search">
+                    <input 
+                        type="text" 
+                        placeholder="Search" 
+                        className="search-input" 
+                    />
+                </div>
             </div>
 
             <div className="chat-list-scroll">
