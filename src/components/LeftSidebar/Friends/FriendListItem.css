@@ -9,11 +9,11 @@
 }
 
 .friend-list-item:hover {
-    background-color: #2c2c2e;
+    background-color: var(--bg-hover);
 }
 
 .friend-list-item.active {
-    background-color: #8774e1;
+    background-color: var(--bg-secondary);
 }
 
 .friend-avatar {
@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
+    color: var(--msg-own-text);
     font-weight: 500;
 }
 
@@ -47,7 +47,7 @@
 .friend-name {
     font-weight: 500;
     font-size: 1rem;
-    color: #ffffff;
+    color: var(--msg-own-text);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

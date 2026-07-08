@@ -1,12 +1,14 @@
 import { useState } from "react";
 import type { UserPreviewResponse } from "@/contracts/Response/ChatList/UserPreviewResponse";
 import FriendListItem from "./FriendListItem"
+import RoundButton from "@/components/ui/RoundButton";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 import "./FriendList.css";
 
 interface FriendListProps {
     friends: UserPreviewResponse[];
     onFriendSelect?: (friendId: string) => void;
-    onBack?: () => void;
+    onBack: () => void;
 }
 
 export default function FriendList({ friends, onFriendSelect, onBack }: FriendListProps) {
@@ -22,9 +24,10 @@ export default function FriendList({ friends, onFriendSelect, onBack }: FriendLi
     return (
         <div className="friend-list-container">
             <div className="friend-list-header-search">
-                <button className="friend-list-back" onClick={onBack} title="Go back">
-                    ←
-                </button>
+                <RoundButton 
+                icon={<FaLongArrowAltLeft />} 
+                onClick={onBack}  
+                />
                 <input 
                     type="text" 
                     placeholder="Search contacts..." 
