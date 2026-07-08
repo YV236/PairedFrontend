@@ -9,20 +9,23 @@
 .chat-list-header{
     display: flex;
     flex-direction: row;
+    gap: 0.5rem;
+    padding: 1rem 1rem 0.5rem 1rem;
+    position: relative;
 }
 
 .chat-list-search {
-    padding: 1rem 1rem 0.5rem 1rem;
-    flex-shrink: 0;
+    display: flex;
+    flex-grow: 1;
 }
 
 .search-input {
     width: 100%;
-    background-color: #121212;
+    background-color: var(--bg-secondary);
     border: none;
     border-radius: 1.5rem;
     padding: 0.5rem 1rem;
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 0.875rem;
     outline: none;
     box-sizing: border-box;
