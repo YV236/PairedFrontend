@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { UserPreviewResponse } from "@/contracts/Response/ChatList/UserPreviewResponse";
-import FriendListItem from "../ui/FriendListItem"
+import FriendListItem from "./FriendListItem"
 import "./FriendList.css";
 
 interface FriendListProps {

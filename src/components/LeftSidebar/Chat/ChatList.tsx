@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { ChatListItemResponse } from "@/contracts/Response/ChatList/ChatListItemResponse";
-import ChatListItem from "../ui/ChatListItem";
+import ChatListItem from "./ChatListItem";
 import "./ChatList.css";
 
 interface ChatListProps {

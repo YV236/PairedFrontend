@@ -1,11 +1,11 @@
 import { useState, type ReactNode } from "react";
 import PageLayout from "@/layouts/PageLayout/PageLayout";
-import Settings from "@/components/LeftSidebar/Settings";
+import Settings from "@/components/LeftSidebar/Settings/Settings";
 import MyProfile from "@/components/RightSideBar/MyProfile";
 import { mockChatList, mockFriendsList } from "@/contracts/Common/ChatMock";
-import ChatList from "@/components/LeftSidebar/ChatList";
+import ChatList from "@/components/LeftSidebar/Chat/ChatList";
 import ChatView from "@/components/MainContent/ChatView";
-import FriendList from "@/components/LeftSidebar/FriendList";
+import FriendList from "@/components/LeftSidebar/Friends/FriendList";
 
 export default function MessengerPage() {
 
