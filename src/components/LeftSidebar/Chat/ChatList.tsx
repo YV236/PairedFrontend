@@ -21,7 +21,6 @@ export default function ChatList({ chats, onChatSelect }: ChatListProps) {
     return (
         <div className="chat-list-container">
             <div className="chat-list-header">
-                />
                 <div className="chat-list-search">
                     <input 
                         type="text" 
