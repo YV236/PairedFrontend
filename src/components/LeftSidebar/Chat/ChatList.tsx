@@ -64,11 +64,19 @@ export default function ChatList({ chats, onChatSelect, onOpenSettings, onOpenCo
     return (
         <div className="chat-list-container">
             <div className="chat-list-header">
-                
-                <RoundButton 
-                    icon={<IoMdMenu size={24} />} 
-                    onClick={() => setIsMenuOpen(!isMenuOpen)} 
-                />
+
+                <div style={{ position: "relative" }}>
+                    <RoundButton 
+                        icon={<IoMdMenu size={24} />} 
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        />
+                    {isMenuOpen && (
+                        <DropdownMenu
+                            items={menuItems}
+                            onClose={() => setIsMenuOpen(false)}
+                        />
+                    )}
+                </div>
                 
                 <div className="chat-list-search">
                     <input 
@@ -78,12 +86,6 @@ export default function ChatList({ chats, onChatSelect, onOpenSettings, onOpenCo
                     />
                 </div>
 
-                {isMenuOpen && (
-                    <DropdownMenu 
-                        items={menuItems} 
-                        onClose={() => setIsMenuOpen(false)} 
-                    />
-                )}
             </div>
 
             <div className="chat-list-scroll">

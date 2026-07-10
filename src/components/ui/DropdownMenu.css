@@ -10,8 +10,7 @@
 
 .dropdown-menu {
     position: absolute;
-    top: 3.5rem;
-    left: 1rem;
+    top: calc(100% + 0.5rem);
     width: 240px;
     background-color: var(--bg-secondary);
     border: 1px solid var(--bg-hover);
@@ -45,4 +44,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.dropdown-menu.align-left {
+    left: 0;
+}
+
+.dropdown-menu.align-right {
+    right: 0;
 }

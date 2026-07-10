@@ -10,14 +10,15 @@ export interface DropdownMenuItem {
 interface DropdownMenuProps {
     items: DropdownMenuItem[];
     onClose: () => void;
+    align?: "left" | "right";
 }
 
-export default function DropdownMenu({ items, onClose }: DropdownMenuProps) {
+export default function DropdownMenu({ items, onClose, align = "left" }: DropdownMenuProps) {
     return (
         <>
             <div className="menu-backdrop" onClick={onClose} />
             
-            <div className="dropdown-menu">
+            <div className={`dropdown-menu align-${align}`}>
                 {items.map((item, index) => (
                     <div 
                         key={index} 
