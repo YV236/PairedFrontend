@@ -102,7 +102,7 @@ export default function Settings({
             </div>
 
             <div className="settings-profile">
-                <UserAvatar userName={firstName ?? userName}/>
+                <div className="settings-avatar"><UserAvatar userName={firstName ?? userName}/></div>
                 <div className="settings-name">{firstName} {lastName}</div>
                 <div className="settings-status">Online</div>{/*Add online status in future*/}
             </div>

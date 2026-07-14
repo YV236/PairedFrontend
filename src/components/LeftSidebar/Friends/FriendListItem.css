@@ -17,18 +17,13 @@
 }
 
 .friend-avatar {
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
     overflow: hidden;
     margin-right: 0.75rem;
     flex-shrink: 0;
     background-color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--msg-own-text);
-    font-weight: 500;
 }
 
 .friend-avatar img {

@@ -1,5 +1,6 @@
 import type { ChatListItemResponse } from "@/contracts/Response/ChatList/ChatListItemResponse";
 import "./ChatListItem.css";
+import UserAvatar from "@/components/ui/UserAvatar";
 
 interface ChatListItemProps {
     chat: ChatListItemResponse;
@@ -19,12 +20,12 @@ export default function ChatListItem({ chat, isActive, onClick }: ChatListItemPr
             onClick={onClick}
         >
             <div className="chat-avatar">
-                <img src={chat.otherUser.avatarUrl} alt={chat.otherUser.name} />
+                <UserAvatar imageUrl={chat.otherUser.avatarUrl} userName={chat.otherUser.firstName + " " + chat.otherUser.lastName} />
             </div>
             
             <div className="chat-info">
                 <div className="chat-header">
-                    <span className="chat-name">{chat.otherUser.name}</span>
+                    <span className="chat-name">{chat.otherUser.firstName + " " + chat.otherUser.lastName}</span>
                     <span className="chat-time">{time}</span>
                 </div>
                 

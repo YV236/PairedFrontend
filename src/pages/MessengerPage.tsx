@@ -21,17 +21,17 @@ export default function MessengerPage() {
     };
 
     const showSettings = () => {
-        setLeftContent(
-            <Settings 
-                firstName="YV" 
-                lastName=""
-                userName="y_vnnk"
-                phoneNumber="+380 66 453 56 31"
-                email="example@mail.com"
-                twoFactorEnabled={true}
-                onBack={() => setLeftContent(chatListElement)} 
-            />
-        );
+         setLeftContent(
+             <Settings 
+                 firstName="YV" 
+                 lastName=""
+                 userName="y_vnnk"
+                 phoneNumber="+380 66 453 56 31"
+                 email="example@mail.com"
+                 twoFactorEnabled={true}
+                 onBack={() => setLeftContent(chatListElement)} 
+             />
+         )
     };
 
     const showFriendsList = () => {

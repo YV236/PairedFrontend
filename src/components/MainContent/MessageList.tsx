@@ -1,4 +1,6 @@
 import type { MessageResponse } from "@/contracts/Response/Chat/MessageResponse";
+import PinnedMessages from "./PinnedMessages";
+import MessageBubble from "./MessageBubble";
 import "./MessageList.css";
 
 interface MessageListProps {
@@ -10,16 +12,9 @@ export default function MessageList({ messages }: MessageListProps) {
 
     return (
         <div className="message-list-container">
-            <div className="pinned-message">
-                <div className="pinned-content">
-                    <span className="pinned-title">Pinned message #11</span>
-                    <span className="pinned-text">0021lubieplacki3700 пароль до...</span>
-                </div>
-                <button className="icon-btn">📌</button>
-            </div>
+            <PinnedMessages />
 
             <div className="messages-scroll-area">
-                
                 {messages.map((message) => {
                     const isOwnMessage = message.senderId === CURRENT_USER_ID;
                     
@@ -29,20 +24,14 @@ export default function MessageList({ messages }: MessageListProps) {
                     });
 
                     return (
-                        <div 
-                            key={message.id} 
-                            className={`message ${isOwnMessage ? "own" : ""}`}
-                        >
-                            <div className="message-content">
-                                {message.content}
-                            </div>
-                            <div className="message-meta">
-                                {time} {isOwnMessage ? "✓" : ""}
-                            </div>
-                        </div>
+                        <MessageBubble 
+                            key={message.id}
+                            content={message.content}
+                            time={time}
+                            isOwnMessage={isOwnMessage}
+                        />
                     );
                 })}
-
             </div>
         </div>
     );

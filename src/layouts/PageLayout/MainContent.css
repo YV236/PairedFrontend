@@ -2,7 +2,7 @@
     flex: 1 1 auto;
     min-width: 0; 
     height: 100%;
-    
+    margin: 1rem;
     display: flex;
     flex-direction: column;
     background-color: transparent; 
