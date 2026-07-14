@@ -71,7 +71,7 @@ export default function Settings({
     ]
 
     return (
-        <div className="settings-container">
+        <>
             <div className="settings-header">
                 <div className="settings-header" style={{padding: 0}}>
                     <RoundButton 
@@ -110,6 +110,6 @@ export default function Settings({
             <Section items={profileData}/>
             <Section items={generalSettings} />
             
-        </div>
+        </>
     );
 }
