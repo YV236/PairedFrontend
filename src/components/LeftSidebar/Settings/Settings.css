@@ -16,7 +16,7 @@
 
 .settings-header-actions {
     display: flex;
-    gap: 16px;
+    gap: 0.1rem;
 }
 
 .settings-profile {

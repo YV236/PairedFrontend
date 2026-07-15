@@ -1,5 +1,8 @@
+import { HiMagnifyingGlass } from "react-icons/hi2";
+import RoundButton from "../ui/RoundButton";
 import UserAvatar from "../ui/UserAvatar";
 import "./ChatViewHeader.css";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 
 interface ChatViewHeaderProps{
@@ -23,8 +26,8 @@ export default function ChatViewHeader({imageURL, firstName, lastName, nickName}
                 </div>
             </div>
             <div className="header-actions">
-                <button className="icon-btn">🔍</button>
-                <button className="icon-btn">⋮</button>
+                <RoundButton icon={<HiMagnifyingGlass />} onClick={()=> console.log("Search this chat opened")} />
+                <RoundButton icon={<BsThreeDotsVertical  />} onClick={()=> console.log("More actions opened")} />
             </div>
         </header>
     );

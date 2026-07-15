@@ -14,6 +14,10 @@
     color: var(--text-secondary);
     transition: background-color 0.2s, color 0.2s;
 }
+.round-button svg {
+    width: 60%;
+    height: 60%;
+}
 
 .round-button:hover {
     background-color: var(--bg-hover) !important;
