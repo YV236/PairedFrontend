@@ -3,10 +3,18 @@
     height: 100vh;
     width: 100%;
     overflow: hidden;
+    background-color: var(--bg-primary);
+    position: relative;
 }
 
 .divider {
     width: 0.4rem; 
-    background-color: var(--text-secondary);
+    background-color: var(--bg-secondary);
     flex-shrink: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .divider {
+        display: none;
+    }
 }

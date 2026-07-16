@@ -7,9 +7,12 @@ export const CURRENT_USER_ID = "me_123";
 export const mockChatList: ChatListItemResponse[] = [
     {
         id: "chat_1",
+        chatName: "Саня",
         otherUser: {
             id: "user_1",
-            name: "Олександр Петренко",
+            nickName: "o_petr",
+            firstName: "Олександр",
+            lastName: "Петренко",
             avatarUrl: "https://i.pravatar.cc/150?u=user_1",
         },
         lastMessage: {
@@ -20,9 +23,12 @@ export const mockChatList: ChatListItemResponse[] = [
     },
     {
         id: "chat_2",
+        chatName: "Марія (дизайнер)",
         otherUser: {
             id: "user_2",
-            name: "Марія (Дизайнер)",
+            nickName: "mary_K",
+            firstName: "Марія",
+            lastName: "Коваль",
             avatarUrl: "https://i.pravatar.cc/150?u=user_2",
         },
         lastMessage: {
@@ -33,9 +39,12 @@ export const mockChatList: ChatListItemResponse[] = [
     },
     {
         id: "chat_3",
+        chatName: "Макс (QA)",
         otherUser: {
             id: "user_3",
-            name: "QA Team (Максим)",
+            nickName: "max",
+            firstName: "Максим",
+            lastName: "Сосновськи",
             avatarUrl: "https://i.pravatar.cc/150?u=user_3",
         },
         lastMessage: {
@@ -51,7 +60,9 @@ export const mockChats: ChatResponse[] = [
         id: "chat_1",
         otherUser: {
             id: "user_1",
-            name: "Олександр Петренко",
+            nickName: "o_petr",
+            firstName: "Олександр",
+            lastName: "Петренко",
             avatarUrl: "https://i.pravatar.cc/150?u=user_1",
         },
         messages: [
@@ -85,7 +96,9 @@ export const mockChats: ChatResponse[] = [
         id: "chat_2",
         otherUser: {
             id: "user_2",
-            name: "Марія (Дизайнер)",
+            nickName: "mary_K",
+            firstName: "Марія",
+            lastName: "Коваль",
             avatarUrl: "https://i.pravatar.cc/150?u=user_2",
         },
         messages: [
@@ -107,7 +120,9 @@ export const mockChats: ChatResponse[] = [
         id: "chat_3",
         otherUser: {
             id: "user_3",
-            name: "QA Team (Максим)",
+            nickName: "max",
+            firstName: "Максим",
+            lastName: "Сосновськи",
             avatarUrl: "https://i.pravatar.cc/150?u=user_3",
         },
         messages: [
@@ -142,32 +157,44 @@ export const mockChats: ChatResponse[] = [
 export const mockFriendsList: UserPreviewResponse[] = [
     {
         id: "user_1",
-        name: "Олександр Петренко",
+        nickName: "o_petr",
+        firstName: "Олександр",
+        lastName: "Петренко",
         avatarUrl: "https://i.pravatar.cc/150?u=user_1",
     },
     {
         id: "user_2",
-        name: "Марія (Дизайнер)",
+            nickName: "mary_K",
+            firstName: "Марія",
+            lastName: "Коваль",
         avatarUrl: "https://i.pravatar.cc/150?u=user_2",
     },
     {
         id: "user_3",
-        name: "Максим (QA Team)",
+        nickName: "max",
+        firstName: "Максим",
+        lastName: "Сосновськи",
         avatarUrl: "https://i.pravatar.cc/150?u=user_3",
     },
     {
         id: "user_4",
-        name: "Іван Коваленко",
+        nickName: "IK",
+        firstName: "Іван",
+        lastName: "Коваленко",
         avatarUrl: "https://i.pravatar.cc/150?u=user_4",
     },
     {
         id: "user_5",
-        name: "Анна Шевченко",
+        nickName: "ann",
+        firstName: "Анна",
+        lastName: "Шевченко",
         avatarUrl: "https://i.pravatar.cc/150?u=user_5",
     },
     {
         id: "user_6",
-        name: "Дмитро Мельник",
+        nickName: "dimaM",
+        firstName: "Дмитро",
+        lastName: "Мельник",
         avatarUrl: "https://i.pravatar.cc/150?u=user_6",
     }
 ];

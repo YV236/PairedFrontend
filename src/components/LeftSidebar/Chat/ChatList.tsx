@@ -1,15 +1,24 @@
 import { useState } from "react";
 import type { ChatListItemResponse } from "@/contracts/Response/ChatList/ChatListItemResponse";
 import ChatListItem from "./ChatListItem";
+import { IoMdMenu, IoMdBookmark, IoMdSettings, IoMdMoon } from "react-icons/io";
+import RoundButton from "@/components/ui/RoundButton";
+import DropdownMenu, { type DropdownMenuItem } from "@/components/ui/DropdownMenu"; 
+import { MdOutlinePeople } from "react-icons/md";
+import { IoPersonOutline } from "react-icons/io5";
 import "./ChatList.css";
 
 interface ChatListProps {
     chats: ChatListItemResponse[];
     onChatSelect?: (chatId: string) => void; 
+    onOpenSettings?: () => void;
+    onOpenContacts?: () => void;
+    onOpenProfile?: () => void;
 }
 
-export default function ChatList({ chats, onChatSelect }: ChatListProps) {
+export default function ChatList({ chats, onChatSelect, onOpenSettings, onOpenContacts, onOpenProfile }: ChatListProps) {
     const [activeChatId, setActiveChatId] = useState<string | null>(null);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleSelectChat = (id: string) => {
         setActiveChatId(id);
@@ -18,9 +27,57 @@ export default function ChatList({ chats, onChatSelect }: ChatListProps) {
         }
     };
 
+    const menuItems: DropdownMenuItem[] = [
+        {
+            icon: <IoMdBookmark />,
+            title: "Saved Messages",
+            onClick: () => console.log("Відкрито збережені повідомлення")
+        },
+        {
+            icon: <IoPersonOutline />,
+            title: "Profile",
+            onClick: () => {
+                if (onOpenProfile) onOpenProfile();
+            }
+        },
+        {
+            icon: <MdOutlinePeople />,
+            title: "Contacts",
+            onClick: () => {
+                if (onOpenContacts) onOpenContacts();
+            }
+        },
+        {
+            icon: <IoMdSettings />,
+            title: "Settings",
+            onClick: () => {
+                if (onOpenSettings) onOpenSettings();
+            }
+        },
+        {
+            icon: <IoMdMoon />,
+            title: "Dark Mode",
+            onClick: () => console.log("Перемикання теми")
+        }
+    ];
+
     return (
         <div className="chat-list-container">
             <div className="chat-list-header">
+
+                <div style={{ position: "relative" }}>
+                    <RoundButton 
+                        icon={<IoMdMenu size={24} />} 
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        />
+                    {isMenuOpen && (
+                        <DropdownMenu
+                            items={menuItems}
+                            onClose={() => setIsMenuOpen(false)}
+                        />
+                    )}
+                </div>
+                
                 <div className="chat-list-search">
                     <input 
                         type="text" 
@@ -28,6 +85,7 @@ export default function ChatList({ chats, onChatSelect }: ChatListProps) {
                         className="search-input" 
                     />
                 </div>
+
             </div>
 
             <div className="chat-list-scroll">

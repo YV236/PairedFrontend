@@ -4,7 +4,6 @@
     height: 100%;
     width: 100%;
     background-color: transparent;
-    color: #ffffff;
 }
 
 .friend-list-header-search {
@@ -30,7 +29,7 @@
 }
 
 .friend-list-back:hover {
-    color: #ffffff;
+    color: #ff0000;
     background-color: rgba(255, 255, 255, 0.05);
 }
 

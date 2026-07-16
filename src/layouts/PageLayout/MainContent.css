@@ -1,9 +1,16 @@
 .main-content {
     flex: 1 1 auto;
-    min-width: 0; 
+    min-width: 400px; 
     height: 100%;
-    
+    margin: 1rem;
     display: flex;
     flex-direction: column;
     background-color: transparent; 
+}
+
+@media screen and (max-width: 768px) {
+    .main-content {
+        width: 100vw;
+        margin: 0;
+    }
 }

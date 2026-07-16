@@ -8,41 +8,30 @@ import ChatView from "@/components/MainContent/ChatView";
 import FriendList from "@/components/LeftSidebar/Friends/FriendList";
 
 export default function MessengerPage() {
-
-    const chatListElement = (
-        <ChatList 
-            chats={mockChatList} 
-            onChatSelect={(chatId) => {
-                console.log("Відкрити чат номер:", chatId);
-                setMainContent(<ChatView chatId={chatId} />);
-            }} 
-        />
-    );
+      
 
     const [mainContent, setMainContent] = useState<ReactNode>(null);
 
     const [rightContent, setRightContent] = useState<ReactNode>(null);
 
-    const [leftContent, setLeftContent] = useState(chatListElement);
-
     const toggleFriendInfo = () => {
         setRightContent(
             <MyProfile onClose={() => setRightContent(null)} />
-    );
-    };
-    
-    const showSettings = () => {
-        setLeftContent(
-            <Settings 
-                firstName="YV" 
-                lastName=""
-                userName="y_vnnk"
-                phoneNumber="+380 66 453 56 31"
-                email="example@mail.com"
-                twoFactorEnabled={true}
-                onBack={() => setLeftContent(chatListElement)} 
-            />
         );
+    };
+
+    const showSettings = () => {
+         setLeftContent(
+             <Settings 
+                 firstName="YV" 
+                 lastName=""
+                 userName="y_vnnk"
+                 phoneNumber="+380 66 453 56 31"
+                 email="example@mail.com"
+                 twoFactorEnabled={true}
+                 onBack={() => setLeftContent(chatListElement)} 
+             />
+         )
     };
 
     const showFriendsList = () => {
@@ -69,14 +58,27 @@ export default function MessengerPage() {
         )
     }
 
+    const chatListElement = (
+        <ChatList 
+            chats={mockChatList} 
+            onChatSelect={(chatId) => {
+                console.log("Відкрити чат номер:", chatId);
+                setMainContent(
+                <ChatView 
+                    chatId={chatId} 
+                    onBack={() => setMainContent(null)}
+                />
+            );
+            }}
+            onOpenSettings={showSettings}
+            onOpenContacts={showFriendsList}
+            onOpenProfile={toggleFriendInfo}
+        />
+    );
+    const [leftContent, setLeftContent] = useState(chatListElement);
+
     return (
         <>
-            <div style={{ position: 'absolute', top: 0, left: 0, zIndex: 10 }}>
-                <button onClick={showFriendsList}> Показати список друзів</button>
-                <button onClick={toggleFriendInfo}>Перемикнути інфо справа</button>
-                <button onClick={showSettings}>Налаштування зліва</button>
-            </div>
-
             <PageLayout
                 left={leftContent}
                 main={mainContent}

@@ -9,16 +9,16 @@
 }
 
 .chat-list-item:hover {
-    background-color: #2c2c2e;
+    background-color: var(--bg-hover);
 }
 
 .chat-list-item.active {
-    background-color: #8774e1;
+    background-color: var(--bg-secondary);
 }
 
 .chat-list-item.active .chat-time,
 .chat-list-item.active .message-text {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--msg-own-text);
 }
 
 .chat-avatar {
@@ -53,7 +53,7 @@
 
 .chat-name {
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 1rem;
     white-space: nowrap;
     overflow: hidden;
@@ -62,7 +62,7 @@
 
 .chat-time {
     font-size: 0.75rem;
-    color: #aaaaaa;
+    color: var(--msg-own-text);
     margin-left: 0.5rem;
     flex-shrink: 0;
 }
@@ -74,7 +74,7 @@
 }
 
 .message-text {
-    color: #aaaaaa;
+    color: var(--msg-own-text);
     font-size: 0.875rem;
     white-space: nowrap;
     overflow: hidden;
@@ -83,8 +83,8 @@
 }
 
 .unread-badge {
-    background-color: #aaaaaa;
-    color: #1c1c1d;
+    background-color: var(--msg-own-bg);
+    color: var(--msg-own-text);
     font-size: 0.75rem;
     font-weight: bold;
     padding: 0.125rem 0.4rem;
@@ -93,6 +93,6 @@
 }
 
 .chat-list-item.active .unread-badge {
-    background-color: #ffffff;
-    color: #8774e1;
+    background-color: var(--msg-own-bg);
+    color: var(--msg-own-text);
 }

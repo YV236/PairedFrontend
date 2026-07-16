@@ -1,5 +1,6 @@
 import type { UserPreviewResponse } from "@/contracts/Response/ChatList/UserPreviewResponse";
 import "./FriendListItem.css";
+import UserAvatar from "@/components/ui/UserAvatar";
 
 interface FriendListItemProps {
     friend: UserPreviewResponse;
@@ -14,15 +15,12 @@ export default function FriendListItem({ friend, isActive, onClick }: FriendList
             onClick={onClick}
         >
             <div className="friend-avatar">
-                {friend.avatarUrl ? (
-                    <img src={friend.avatarUrl} alt={friend.name} />
-                ) : (
-                    <span>{friend.name.charAt(0)}</span>
-                )}
+                <UserAvatar imageUrl={friend.avatarUrl} userName={friend.nickName} />
+                
             </div>
             
             <div className="friend-info">
-                <div className="friend-name">{friend.name}</div>
+                <div className="friend-name">{friend.firstName + " " + friend.lastName}</div>
             </div>
         </div>
     );

@@ -1,3 +1,15 @@
+import { useTheme } from "@/context/ThemeProvider";
+import RoundButton from "@/components/ui/RoundButton";
+import { FaLongArrowAltLeft, FaRegMoon } from "react-icons/fa";
+import { MdLanguage, MdPhone, MdAlternateEmail } from "react-icons/md";
+import Section, { type SectionItemData } from "@/components/ui/Section" 
+import { CiSun } from "react-icons/ci";
+import UserAvatar from "@/components/ui/UserAvatar";
+import { GoPencil } from "react-icons/go";
+import { TbDotsVertical } from "react-icons/tb";
+import { useState } from "react";
+import DropdownMenu, { type DropdownMenuItem } from "@/components/ui/DropdownMenu";
+import { IoLogOutOutline } from "react-icons/io5";
 import "./Settings.css";
 
 interface SettingsProps {
@@ -7,116 +19,97 @@ interface SettingsProps {
     twoFactorEnabled: boolean;
     firstName: string;
     lastName: string;
-    onBack?: () => void;
+    onBack: () => void;
 }
 
 export default function Settings({ 
-    userName, 
-    email, 
-    phoneNumber, 
-    twoFactorEnabled, 
     firstName, 
     lastName,
+    phoneNumber,
+    userName,
     onBack
 }: SettingsProps) {
+
+    const { theme, toggleTheme } = useTheme();
+    const [ isMenuOpen, setIsMenuOpen ] = useState(false);
+
+    const profileData: SectionItemData[] = [
+        {
+            icon: <MdPhone />,
+            text: phoneNumber,
+            underText: "Phone",
+            onClick: () => { navigator.clipboard.writeText(phoneNumber) }
+        },
+        {
+            icon: <MdAlternateEmail />,
+            text: userName,
+            underText: "Username",
+            onClick: () => { navigator.clipboard.writeText(phoneNumber) }
+        }
+    ];
+
+    const generalSettings: SectionItemData[] = [
+        {
+            icon: theme === "dark" ? <FaRegMoon /> : <CiSun />,
+            text: `Switch to ${theme === "dark" ? "Light" : "Dark"} Mode`,
+            onClick: toggleTheme
+        },
+        {
+            icon: <MdLanguage />,
+            text: "Language",
+            underText: "English",
+            onClick: () => console.log("Language settings opened")
+        }
+    ];
+
+    const menuItems: DropdownMenuItem[] =[
+        {
+            icon: <IoLogOutOutline />,
+            title: "Log out",
+            onClick: () => console.log("User logged out")
+        }
+    ]
+
     return (
-        <div className="settings-container">
+        <>
             <div className="settings-header">
-                <div 
-                    onClick={onBack} 
-                    style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
-                >
-                    <span>←</span> Settings
+                <div className="settings-header" style={{padding: 0}}>
+                    <RoundButton 
+                        icon={<FaLongArrowAltLeft />}
+                        onClick={onBack}
+                    />
+                    <span style={{marginLeft: "1rem"}}> Settings </span>
                 </div>
                 <div className="settings-header-actions">
-                    <span>✏️</span>
-                    <span>⋮</span>
+                    <RoundButton 
+                        icon={<GoPencil />}
+                        onClick={()=>console.log("pencil click")}
+                    />
+                    <div style={{ position: "relative" }}>
+                        <RoundButton
+                            icon={<TbDotsVertical />}
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        />
+                        {isMenuOpen && (
+                            <DropdownMenu
+                                items={menuItems}
+                                onClose={() => setIsMenuOpen(false)}
+                                align="right"
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
 
             <div className="settings-profile">
-                <div className="settings-avatar">
-                    <span style={{color: '#000', fontSize: '24px'}}>☯️</span>
-                </div>
+                <div className="settings-avatar"><UserAvatar userName={firstName ?? userName}/></div>
                 <div className="settings-name">{firstName} {lastName}</div>
-                <div className="settings-status">online</div>
+                <div className="settings-status">Online</div>{/*Add online status in future*/}
             </div>
 
-            <div className="settings-card">
-                <div className="settings-item">
-                    <div className="settings-item-icon">📞</div>
-                    <div className="settings-item-content">
-                        <span className="settings-item-title">{phoneNumber}</span>
-                        <span className="settings-item-subtitle">Phone</span>
-                    </div>
-                </div>
-                <div className="settings-item">
-                    <div className="settings-item-icon">@</div>
-                    <div className="settings-item-content">
-                        <span className="settings-item-title">@{userName}</span>
-                        <span className="settings-item-subtitle">Username</span>
-                    </div>
-                </div>
-                <div className="settings-item">
-                    <div className="settings-item-icon">✉️</div>
-                    <div className="settings-item-content">
-                        <span className="settings-item-title">{email}</span>
-                        <span className="settings-item-subtitle">Email</span>
-                    </div>
-                </div>
-            </div>
-
-            <div className="settings-card">
-                <div className="settings-item">
-                    <div className="settings-item-icon">⚙️</div>
-                    <div className="settings-item-content">
-                        <span className="settings-item-title">General Settings</span>
-                    </div>
-                </div>
-                <div className="settings-item">
-                    <div className="settings-item-icon">🔔</div>
-                    <div className="settings-item-content">
-                        <span className="settings-item-title">Notifications</span>
-                    </div>
-                </div>
-                <div className="settings-item">
-                    <div className="settings-item-icon">🔒</div>
-                    <div className="settings-item-content">
-                        <span className="settings-item-title">Privacy and Security</span>
-                    </div>
-                    <div className="settings-item-value">
-                        {twoFactorEnabled ? "2FA On" : ""}
-                    </div>
-                </div>
-                <div className="settings-item">
-                    <div className="settings-item-icon">📁</div>
-                    <div className="settings-item-content">
-                        <span className="settings-item-title">Chat Folders</span>
-                    </div>
-                </div>
-                <div className="settings-item">
-                    <div className="settings-item-icon">🌐</div>
-                    <div className="settings-item-content">
-                        <span className="settings-item-title">Language</span>
-                    </div>
-                    <div className="settings-item-value">English</div>
-                </div>
-            </div>
-
-            <div className="settings-card">
-                <div className="settings-item">
-                    <div className="settings-item-icon">⭐</div>
-                    <div className="settings-item-content">
-                        <span className="settings-item-title">Telegram Premium</span>
-                    </div>
-                </div>
-                <div className="settings-item">
-                    <div className="settings-item-icon">🎁</div>
-                    <div className="settings-item-content">
-                        <span className="settings-item-title">Send a Gift</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <Section items={profileData}/>
+            <Section items={generalSettings} />
+            
+        </>
     );
 }

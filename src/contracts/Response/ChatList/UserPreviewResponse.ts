@@ -1,5 +1,7 @@
 export type UserPreviewResponse = {
     id: string;
-    name: string;
+    nickName: string;
+    firstName: string;
+    lastName: string;
     avatarUrl: string;
 }

@@ -1,10 +1,16 @@
+import { RxCross1 } from "react-icons/rx";
+import RoundButton from "../ui/RoundButton";
 import "./ProfileCard.css";
+import { GoPencil } from "react-icons/go";
+import UserAvatar from "../ui/UserAvatar";
+import type { ReactNode } from "react";
+import Section from "../ui/Section";
 
 export interface ProfileInfoItem {
-    icon: string;
-    value: string;
-    label: string;
-    rightElement?: React.ReactNode;
+    icon: ReactNode;
+    text: string;
+    underText: string;
+    onClick: () => void;
 }
 
 interface ProfileCardProps {
@@ -22,7 +28,6 @@ export default function ProfileCard({
     title,
     name,
     status,
-    avatarIcon = "👤",
     infoItems,
     tabs,
     onClose,
@@ -31,33 +36,18 @@ export default function ProfileCard({
     return (
         <div className="profile-card-container">
             <div className="profile-header">
-                <button className="icon-btn" onClick={onClose}>✕</button>
+                <RoundButton icon={<RxCross1 />} onClick={onClose} />
                 <h2 className="profile-header-title">{title}</h2>
-                <button className="icon-btn edit-btn" onClick={onEdit}>✏️</button>
+                <RoundButton icon={<GoPencil />} onClick={onEdit} />
             </div>
 
             <div className="profile-main-info">
-                <div className="profile-avatar">
-                    <span>{avatarIcon}</span>
-                </div>
+                <div className="profile-avatar"><UserAvatar userName={name} /></div>
                 <h3 className="profile-name">{name}</h3>
                 <span className="profile-status">{status}</span>
             </div>
 
-            <div className="profile-info-block">
-                {infoItems.map((item, index) => (
-                    <div className="profile-info-item" key={index}>
-                        <div className="info-icon">{item.icon}</div>
-                        <div className="info-text">
-                            <span className="info-value">{item.value}</span>
-                            <span className="info-label">{item.label}</span>
-                        </div>
-                        {item.rightElement && (
-                            <div className="info-right-action">{item.rightElement}</div>
-                        )}
-                    </div>
-                ))}
-            </div>
+            <Section items={infoItems} />
 
             <div className="profile-tabs">
                 {tabs.map((tab, index) => (
