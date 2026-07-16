@@ -63,7 +63,12 @@ export default function MessengerPage() {
             chats={mockChatList} 
             onChatSelect={(chatId) => {
                 console.log("Відкрити чат номер:", chatId);
-                setMainContent(<ChatView chatId={chatId} />);
+                setMainContent(
+                <ChatView 
+                    chatId={chatId} 
+                    onBack={() => setMainContent(null)}
+                />
+            );
             }}
             onOpenSettings={showSettings}
             onOpenContacts={showFriendsList}

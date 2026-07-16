@@ -6,18 +6,17 @@ import MessageInput from "./MessageInput";
 
 interface ChatViewProps {
     chatId: string;
+    onBack?: () => void;
 }
 
-export default function ChatView({ chatId }: ChatViewProps) {
+export default function ChatView({ chatId, onBack }: ChatViewProps) {
     const chatData = mockChats.find(chat => chat.id === chatId);
 
     if (!chatData) {
         return (
-            <>
-                <div style={{ color: 'white', padding: '20px', textAlign: 'center' }}>
-                    Виберіть чат для спілкування
-                </div>
-            </>
+            <div style={{ color: 'white', padding: '20px', textAlign: 'center' }}>
+                Виберіть чат для спілкування
+            </div>
         );
     }
 
@@ -25,9 +24,10 @@ export default function ChatView({ chatId }: ChatViewProps) {
         <>
             <ChatViewHeader 
                 imageURL={chatData.otherUser.avatarUrl}
-                firstName = {chatData.otherUser.firstName}
-                lastName = {chatData.otherUser.lastName}
-                nickName = {chatData.otherUser.nickName} 
+                firstName={chatData.otherUser.firstName}
+                lastName={chatData.otherUser.lastName}
+                nickName={chatData.otherUser.nickName} 
+                onBack={onBack}
             />
 
             <div className="chat-view-messages">

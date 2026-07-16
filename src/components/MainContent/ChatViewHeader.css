@@ -39,11 +39,27 @@
 .header-title {
     font-size: 1.125rem;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text-primary);
     margin: 0;
 }
 
 .header-subtitle {
     font-size: 0.875rem;
     color: var(--text-secondary);
+}
+
+.mobile-back-btn {
+    display: none;
+    margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .chat-view-header {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .mobile-back-btn {
+        display: block;
+    }
 }

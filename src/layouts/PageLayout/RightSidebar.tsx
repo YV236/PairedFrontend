@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import "./RightSideBar.css"
 
 type Props = {
     children?: ReactNode;
