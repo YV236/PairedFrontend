@@ -6,26 +6,29 @@ import RoundButton from "@/components/ui/RoundButton";
 import DropdownMenu, { type DropdownMenuItem } from "@/components/ui/DropdownMenu"; 
 import { MdOutlinePeople } from "react-icons/md";
 import { IoPersonOutline } from "react-icons/io5";
+import { useSidebar } from "@/context/SideBarContext"
 import "./ChatList.css";
+import MyProfile from "@/components/RightSideBar/MyProfile";
 
 interface ChatListProps {
     chats: ChatListItemResponse[];
+    activeChatId?: string | null;
     onChatSelect?: (chatId: string) => void; 
     onOpenSettings?: () => void;
     onOpenContacts?: () => void;
     onOpenProfile?: () => void;
 }
 
-export default function ChatList({ chats, onChatSelect, onOpenSettings, onOpenContacts, onOpenProfile }: ChatListProps) {
-    const [activeChatId, setActiveChatId] = useState<string | null>(null);
+export default function ChatList({ chats, activeChatId, onChatSelect, onOpenSettings, onOpenContacts }: ChatListProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleSelectChat = (id: string) => {
-        setActiveChatId(id);
         if (onChatSelect) {
             onChatSelect(id);
         }
     };
+
+    const { setRightContent, closeRightSidebar } = useSidebar();
 
     const menuItems: DropdownMenuItem[] = [
         {
@@ -37,7 +40,7 @@ export default function ChatList({ chats, onChatSelect, onOpenSettings, onOpenCo
             icon: <IoPersonOutline />,
             title: "Profile",
             onClick: () => {
-                if (onOpenProfile) onOpenProfile();
+                setRightContent(<MyProfile onClose={closeRightSidebar}/>);
             }
         },
         {

@@ -1,89 +1,55 @@
-import { useState, type ReactNode } from "react";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useSidebar } from "@/context/SideBarContext"
 import PageLayout from "@/layouts/PageLayout/PageLayout";
-import Settings from "@/components/LeftSidebar/Settings/Settings";
-import MyProfile from "@/components/RightSideBar/MyProfile";
-import { mockChatList, mockFriendsList } from "@/contracts/Common/ChatMock";
 import ChatList from "@/components/LeftSidebar/Chat/ChatList";
 import ChatView from "@/components/MainContent/ChatView";
+import Settings from "@/components/LeftSidebar/Settings/Settings";
 import FriendList from "@/components/LeftSidebar/Friends/FriendList";
+import { mockChatList } from "@/contracts/Common/ChatMock";
 
 export default function MessengerPage() {
-      
+    // 1. Отримуємо дані з Router
+    const { chatId } = useParams(); // Дістаємо ID чату з URL (наприклад /chat/123)
+    const location = useLocation(); // Дістаємо поточний шлях (наприклад /settings)
+    const navigate = useNavigate(); // Функція для зміни URL
 
-    const [mainContent, setMainContent] = useState<ReactNode>(null);
+    // 2. Отримуємо стан правої панелі з Контексту
+    const { rightContent } = useSidebar();
 
-    const [rightContent, setRightContent] = useState<ReactNode>(null);
-
-    const toggleFriendInfo = () => {
-        setRightContent(
-            <MyProfile onClose={() => setRightContent(null)} />
-        );
-    };
-
-    const showSettings = () => {
-         setLeftContent(
-             <Settings 
-                 firstName="YV" 
-                 lastName=""
-                 userName="y_vnnk"
-                 phoneNumber="+380 66 453 56 31"
-                 email="example@mail.com"
-                 twoFactorEnabled={true}
-                 onBack={() => setLeftContent(chatListElement)} 
-             />
-         )
-    };
-
-    const showFriendsList = () => {
-        setLeftContent(
-            <FriendList
-                friends={mockFriendsList}
-                onFriendSelect={(friendId) => {
-                    console.log("Клікнули на друга з ID:", friendId);
-
-                    const existingChat = mockChatList.find(chat => chat.otherUser.id === friendId);
-
-                    if (existingChat) {
-                        setMainContent(<ChatView chatId={existingChat.id} />);
-                    } else {                        
-                        setMainContent(
-                            <div style={{ color: "white", padding: "20px" }}>
-                                Немає чату. Створюємо новий чат з {friendId}...
-                            </div>
-                        );
-                    }
-                }}
-                onBack={() => setLeftContent(chatListElement)}
+    // 3. ЛОГІКА ЛІВОЇ ПАНЕЛІ (залежить від URL)
+    let leftContent = null;
+    if (location.pathname === "/settings") {
+        leftContent = <Settings onBack={() => navigate("/")} /* передаємо потрібні пропси */ userName={""} email={""} phoneNumber={""} twoFactorEnabled={false} firstName={""} lastName={""} /* передаємо потрібні пропси */ />;
+    } else if (location.pathname === "/contacts") {
+        leftContent = <FriendList onBack={() => navigate("/")} friends={[]} />;
+    } else {
+        // За замовчуванням (шлях "/" або "/chat/:id") показуємо список чатів
+        leftContent = (
+            <ChatList 
+                chats={mockChatList} 
+                activeChatId={chatId} // Підсвічуємо активний чат
+                onChatSelect={(id) => navigate(`/chat/${id}`)} // Змінюємо URL при кліку!
+                onOpenSettings={() => navigate("/settings")}
+                onOpenContacts={() => navigate("/contacts")}
             />
-        )
+        );
     }
 
-    const chatListElement = (
-        <ChatList 
-            chats={mockChatList} 
-            onChatSelect={(chatId) => {
-                console.log("Відкрити чат номер:", chatId);
-                setMainContent(
-                <ChatView 
-                    chatId={chatId} 
-                    onBack={() => setMainContent(null)}
-                />
-            );
-            }}
-            onOpenSettings={showSettings}
-            onOpenContacts={showFriendsList}
-            onOpenProfile={toggleFriendInfo}
+    // 4. ЛОГІКА ЦЕНТРАЛЬНОЇ ПАНЕЛІ
+    // Якщо в URL є chatId — малюємо ChatView, інакше — нічого (або заглушку)
+    const mainContent = chatId ? (
+        <ChatView 
+            chatId={chatId} 
+            onBack={() => navigate("/")} // На мобільному "Назад" просто скидає URL на головну
         />
-    );
-    const [leftContent, setLeftContent] = useState(chatListElement);
+    ) : null;
 
+    // 5. Рендеримо Layout
     return (
-        <>
-            <PageLayout
-                left={leftContent}
-                main={mainContent}
-                right={rightContent}
-            />
-        </>
+        <PageLayout
+            left={leftContent}
+            main={mainContent}
+            right={rightContent} // Береться напряму з контексту
+        />
     );
 }
