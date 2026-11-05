@@ -6,7 +6,7 @@ import RoundButton from "@/components/ui/RoundButton";
 import DropdownMenu, { type DropdownMenuItem } from "@/components/ui/DropdownMenu"; 
 import { MdOutlinePeople } from "react-icons/md";
 import { IoPersonOutline } from "react-icons/io5";
-import { useSidebar } from "@/context/SideBarContext"
+import { usePageView } from "@/context/PageViewContext";
 import "./ChatList.css";
 import MyProfile from "@/components/RightSideBar/MyProfile";
 
@@ -28,7 +28,7 @@ export default function ChatList({ chats, activeChatId, onChatSelect, onOpenSett
         }
     };
 
-    const { setRightContent, closeRightSidebar } = useSidebar();
+    const { setContent, closeContent } = usePageView();
 
     const menuItems: DropdownMenuItem[] = [
         {
@@ -40,7 +40,7 @@ export default function ChatList({ chats, activeChatId, onChatSelect, onOpenSett
             icon: <IoPersonOutline />,
             title: "Profile",
             onClick: () => {
-                setRightContent(<MyProfile onClose={closeRightSidebar}/>);
+                setContent(<MyProfile onClose={() => closeContent("right")} />, "right");
             }
         },
         {
