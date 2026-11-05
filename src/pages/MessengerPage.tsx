@@ -1,5 +1,4 @@
-import { useEffect, type ReactNode } from "react";
-import { matchPath, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { usePageView } from "@/context/PageViewContext";
 import PageLayout from "@/layouts/PageLayout/PageLayout";
 import ChatList from "@/components/LeftSidebar/Chat/ChatList";
@@ -9,74 +8,81 @@ import FriendList from "@/components/LeftSidebar/Friends/FriendList";
 import { mockChatList } from "@/contracts/Common/ChatMock";
 
 export default function MessengerPage() {
-    // 1. Отримуємо дані з Router
-    const location = useLocation(); // Дістаємо поточний шлях (наприклад /settings)
-    const navigate = useNavigate(); // Функція для зміни URL
-    // Розібратися з цим кодом, як він працює.
-    const chatId = matchPath("/chat/:chatId", location.pathname)?.params.chatId;
-    const returnPath = (location.state as { from?: string } | null)?.from;
-    const navigateBack = () => {
-        if (returnPath) {
-            navigate(-1);
-        } else {
-            navigate("/");
-        }
-    };
+    const navigate = useNavigate();
+    const {
+        rightContent,
+        mainContent,
+        leftContent,
+        mobileView,
+        activeChatId,
+        setContent,
+        setMobileView,
+        setActiveChatId,
+    } = usePageView();
 
-    // Маршрут визначає відновлюваний вміст сторінки, а контекст зберігає його
-    // в слотах layout. Оновлюємо контекст після рендера, а не під час нього.
-    const { rightContent, mainContent, leftContent, setContent } = usePageView();
+    function makeChatList(selectedChatId: string | null = activeChatId) {
+        return (
+            <ChatList
+                chats={mockChatList}
+                activeChatId={selectedChatId}
+                onChatSelect={openChat}
+                onOpenSettings={openSettings}
+                onOpenContacts={openContacts}
+            />
+        );
+    }
 
-    useEffect(() => {
-        let leftComponent: ReactNode;
+    function openChat(chatId: string) {
+        setActiveChatId(chatId);
+        setContent(makeChatList(chatId), "left");
+        setContent(<ChatView key={chatId} chatId={chatId} onBack={showChatList} />, "main");
+        setMobileView("main");
+        navigate(`/chat/${chatId}`);
+    }
 
-        // TODO: Потрібно подумати над тим, щоб здихатися цих іфів, може зробити механізм, котрий буде змінювати лінку та стан.
-        if (location.pathname === "/settings") {
-            leftComponent = (
-                <Settings
-                    onBack={navigateBack}
-                    userName=""
-                    email=""
-                    phoneNumber=""
-                    twoFactorEnabled={false}
-                    firstName=""
-                    lastName=""
-                />
-            );
-        } else if (location.pathname === "/contacts") {
-            leftComponent = <FriendList onBack={navigateBack} friends={[]} />;
-        } else {
-            leftComponent = (
-                <ChatList
-                    chats={mockChatList}
-                    activeChatId={chatId}
-                    onChatSelect={(id) => navigate(`/chat/${id}`)}
-                    onOpenSettings={() => navigate("/settings", { state: { from: location.pathname } })}
-                    onOpenContacts={() => navigate("/contacts", { state: { from: location.pathname } })}
-                />
-            );
-        }
+    function openSettings() {
+        setContent(
+            <Settings
+                onBack={returnToChat}
+                userName=""
+                email=""
+                phoneNumber=""
+                twoFactorEnabled={false}
+                firstName=""
+                lastName=""
+            />,
+            "left",
+        );
+        setMobileView("left");
+        navigate("/settings");
+    }
 
-        setContent(leftComponent, "left");
-        if (chatId) {
-            setContent(<ChatView chatId={chatId} onBack={() => navigate("/")} />, "main");
-        } else if (location.pathname === "/") {
-            setContent(null, "main");
-        }
-    }, [chatId, location.pathname, navigate, setContent]);
+    function openContacts() {
+        setContent(<FriendList onBack={returnToChat} friends={[]} />, "left");
+        setMobileView("left");
+        navigate("/contacts");
+    }
 
-    // 5. Рендеримо Layout, котрий береться напряму з контексту
+    function returnToChat() {
+        setContent(makeChatList(), "left");
+        setMobileView(activeChatId ? "main" : "left");
+        navigate(activeChatId ? `/chat/${activeChatId}` : "/", { replace: true });
+    }
+
+    function showChatList() {
+        setActiveChatId(null);
+        setContent(makeChatList(null), "left");
+        setContent(null, "main");
+        setMobileView("left");
+        navigate("/", { replace: true });
+    }
+
     return (
         <PageLayout
-            left={leftContent}
+            left={leftContent ?? makeChatList(null)}
             main={mainContent}
             right={rightContent}
-            // Потрібно переробити цей механізм, тому як будуть не тільки ці адреси
-            mobileView={chatId 
-                && location.pathname !== "/settings" 
-                && location.pathname !== "/contacts" 
-                ? "main" 
-                : "left"}
+            mobileView={mobileView}
         />
     );
 }
