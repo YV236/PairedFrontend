@@ -8,11 +8,9 @@ interface PageViewContextType {
     mainContent: ReactNode | null;
     leftContent: ReactNode | null;
     mobileView: MobileView;
-    activeChatId: string | null;
     setContent: (content: ReactNode | null, area: ContentArea) => void;
     closeContent: (area: ContentArea) => void;
     setMobileView: (view: MobileView) => void;
-    setActiveChatId: (chatId: string | null) => void;
 }
 
 const PageViewContext = createContext<PageViewContextType | undefined>(undefined);
@@ -22,7 +20,6 @@ export function PageViewProvider({ children }: { children: ReactNode }) {
     const [mainContent, setMainContent] = useState<ReactNode | null>(null);
     const [leftContent, setLeftContent] = useState<ReactNode | null>(null);
     const [mobileView, setMobileView] = useState<MobileView>("left");
-    const [activeChatId, setActiveChatId] = useState<string | null>(null);
 
     const setContent = useCallback((content: ReactNode | null, area: ContentArea) => {
         switch (area) {
@@ -49,11 +46,9 @@ export function PageViewProvider({ children }: { children: ReactNode }) {
                 mainContent,
                 leftContent,
                 mobileView,
-                activeChatId,
                 setContent,
                 closeContent,
                 setMobileView,
-                setActiveChatId,
             }}
         >
             {children}

@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { usePageView } from "@/context/PageViewContext";
 import PageLayout from "@/layouts/PageLayout/PageLayout";
 import ChatList from "@/components/LeftSidebar/Chat/ChatList";
@@ -9,35 +10,26 @@ import { mockChatList } from "@/contracts/Common/ChatMock";
 
 export default function MessengerPage() {
     const navigate = useNavigate();
+    const { chatId } = useParams();
     const {
         rightContent,
         mainContent,
         leftContent,
         mobileView,
-        activeChatId,
         setContent,
         setMobileView,
-        setActiveChatId,
     } = usePageView();
 
-    function makeChatList(selectedChatId: string | null = activeChatId) {
+    function makeChatList() {
         return (
             <ChatList
                 chats={mockChatList}
-                activeChatId={selectedChatId}
-                onChatSelect={openChat}
+                activeChatId={chatId ?? null}
+                onChatSelect={(selectedId) => navigate(`/chat/${selectedId}`)}
                 onOpenSettings={openSettings}
                 onOpenContacts={openContacts}
             />
         );
-    }
-
-    function openChat(chatId: string) {
-        setActiveChatId(chatId);
-        setContent(makeChatList(chatId), "left");
-        setContent(<ChatView key={chatId} chatId={chatId} onBack={showChatList} />, "main");
-        setMobileView("main");
-        navigate(`/chat/${chatId}`);
     }
 
     function openSettings() {
@@ -54,32 +46,42 @@ export default function MessengerPage() {
             "left",
         );
         setMobileView("left");
-        navigate("/settings");
     }
 
     function openContacts() {
         setContent(<FriendList onBack={returnToChat} friends={[]} />, "left");
         setMobileView("left");
-        navigate("/contacts");
     }
 
     function returnToChat() {
-        setContent(makeChatList(), "left");
-        setMobileView(activeChatId ? "main" : "left");
-        navigate(activeChatId ? `/chat/${activeChatId}` : "/", { replace: true });
+        setContent(null, "left");
+        setMobileView(chatId ? "main" : "left");
     }
 
-    function showChatList() {
-        setActiveChatId(null);
-        setContent(makeChatList(null), "left");
-        setContent(null, "main");
-        setMobileView("left");
-        navigate("/", { replace: true });
-    }
+    useEffect(() => {
+        setContent(null, "left");
+        setContent(null, "right");
+
+        if (!chatId) {
+            setContent(null, "main");
+            setMobileView("left");
+            return;
+        }
+
+        setContent(
+            <ChatView
+                key={chatId}
+                chatId={chatId}
+                onBack={() => navigate("/", { replace: true })}
+            />,
+            "main",
+        );
+        setMobileView("main");
+    }, [chatId, navigate, setContent, setMobileView]);
 
     return (
         <PageLayout
-            left={leftContent ?? makeChatList(null)}
+            left={leftContent ?? makeChatList()}
             main={mainContent}
             right={rightContent}
             mobileView={mobileView}

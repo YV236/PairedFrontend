@@ -7,6 +7,7 @@ function App() {
         <BrowserRouter>
             <PageViewProvider>
                 <Routes>
+                    <Route path="/chat/:chatId" element={<MessengerPage />} />
                     <Route path="*" element={<MessengerPage />} />
                 </Routes>
             </PageViewProvider>
