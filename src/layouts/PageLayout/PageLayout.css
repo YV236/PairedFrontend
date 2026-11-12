@@ -17,4 +17,12 @@
     .divider {
         display: none;
     }
+
+    .page-layout.mobile-view-left > .main-content {
+        display: none;
+    }
+
+    .page-layout.mobile-view-main > .left-sidebar {
+        display: none;
+    }
 }
