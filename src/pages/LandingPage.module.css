@@ -28,7 +28,7 @@
 
 .landing-nav { height: 5.75rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.0625rem solid var(--landing-line); }
 .desktop-nav { display: flex; align-items: center; gap: 2.5rem; color: var(--landing-muted); font-size: 0.875rem; font-weight: 550; }
-.desktop-nav a, .landing-footer a { transition: color 160ms ease; }
+.desktop-nav a, .landing-footer a { color: var(--landing-text); transition: color 160ms ease; }
 .desktop-nav a:hover, .landing-footer a:hover { color: var(--landing-accent); }
 .step-arrow svg { width: 1rem; height: 1rem; }
 
