@@ -6,7 +6,7 @@ import Section from "@/components/ui/Section";
 import UserAvatar from "@/components/ui/UserAvatar";
 import { FaLongArrowAltLeft, FaRegCheckCircle } from "react-icons/fa";
 import { LuCake } from "react-icons/lu";
-import "./EditProfile.css"
+import styles from "./EditProfile.module.css";
 
 
 export default function EditProfile(){
@@ -57,7 +57,7 @@ export default function EditProfile(){
 
     return(
         <>
-            <div className="edit-profile-header">
+            <div className={styles["edit-profile-header"]}>
                 <RoundButton 
                     icon={<FaLongArrowAltLeft />}
                     onClick={() => console.log("go back pressed")}
@@ -65,16 +65,16 @@ export default function EditProfile(){
                 <span style={{marginLeft: "1rem"}}> Edit profile </span>
             </div>
             
-            <div className="edit-profile-content">
-                <div className="edit-profile-image">
-                    <UserAvatar userName={userMock.userName}/>
+            <div className={styles["edit-profile-content"]}>
+                <div className={styles["edit-profile-image"]}>
+                    <div className={styles["edit-profile-avatar"]}><UserAvatar userName={userMock.userName}/></div>
                 </div>
                 <DataInputs items={profileData} />
                 <Section items={actions} />
                 <DataInputs items={userNickname} />
             </div>
 
-            <div className="edit-profile-footer">
+            <div className={styles["edit-profile-footer"]}>
                 <Section items={submition} />
             </div>
         </>

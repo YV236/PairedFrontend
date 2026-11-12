@@ -1,5 +1,5 @@
 import type { ChatListItemResponse } from "@/contracts/Response/ChatList/ChatListItemResponse";
-import "./ChatListItem.css";
+import styles from "./ChatListItem.module.css";
 import UserAvatar from "@/components/ui/UserAvatar";
 
 interface ChatListItemProps {
@@ -16,23 +16,23 @@ export default function ChatListItem({ chat, isActive, onClick }: ChatListItemPr
 
     return (
         <div 
-            className={`chat-list-item ${isActive ? "active" : ""}`} 
+            className={`${styles["chat-list-item"]} ${isActive ? styles.active : ""}`}
             onClick={onClick}
         >
-            <div className="chat-avatar">
+            <div className={styles["chat-avatar"]}>
                 <UserAvatar imageUrl={chat.otherUser.avatarUrl} userName={chat.otherUser.firstName + " " + chat.otherUser.lastName} />
             </div>
             
-            <div className="chat-info">
-                <div className="chat-header">
-                    <span className="chat-name">{chat.otherUser.firstName + " " + chat.otherUser.lastName}</span>
-                    <span className="chat-time">{time}</span>
+            <div className={styles["chat-info"]}>
+                <div className={styles["chat-header"]}>
+                    <span className={styles["chat-name"]}>{chat.otherUser.firstName + " " + chat.otherUser.lastName}</span>
+                    <span className={styles["chat-time"]}>{time}</span>
                 </div>
                 
-                <div className="chat-last-message">
-                    <span className="message-text">{chat.lastMessage.content}</span>
+                <div className={styles["chat-last-message"]}>
+                    <span className={styles["message-text"]}>{chat.lastMessage.content}</span>
                     {chat.unreadCount > 0 && (
-                        <span className="unread-badge">{chat.unreadCount}</span>
+                        <span className={styles["unread-badge"]}>{chat.unreadCount}</span>
                     )}
                 </div>
             </div>

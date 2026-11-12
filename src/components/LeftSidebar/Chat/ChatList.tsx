@@ -7,7 +7,9 @@ import DropdownMenu, { type DropdownMenuItem } from "@/components/ui/DropdownMen
 import { MdOutlinePeople } from "react-icons/md";
 import { IoPersonOutline } from "react-icons/io5";
 import { usePageView } from "@/context/PageViewContext";
-import "./ChatList.css";
+import { useTheme } from "@/context/ThemeProvider";
+import BrandButton from "@/components/ui/BrandButton";
+import styles from "./ChatList.module.css";
 import MyProfile from "@/components/RightSideBar/MyProfile";
 
 interface ChatListProps {
@@ -21,6 +23,7 @@ interface ChatListProps {
 
 export default function ChatList({ chats, activeChatId, onChatSelect, onOpenSettings, onOpenContacts }: ChatListProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { theme, toggleTheme } = useTheme();
 
     const handleSelectChat = (id: string) => {
         if (onChatSelect) {
@@ -59,19 +62,20 @@ export default function ChatList({ chats, activeChatId, onChatSelect, onOpenSett
         },
         {
             icon: <IoMdMoon />,
-            title: "Dark Mode",
-            onClick: () => console.log("Перемикання теми")
+            title: `Switch to ${theme === "dark" ? "Light" : "Dark"} Mode`,
+            onClick: toggleTheme
         }
     ];
 
     return (
-        <div className="chat-list-container">
-            <div className="chat-list-header">
-
-                <div style={{ position: "relative" }}>
+        <div className={styles["chat-list-container"]}>
+            <div className={styles["chat-list-brandbar"]}>
+                <BrandButton size="compact" />
+                <div className={styles["chat-menu-anchor"]}>
                     <RoundButton 
                         icon={<IoMdMenu size={24} />} 
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        ariaLabel="Open menu"
                         />
                     {isMenuOpen && (
                         <DropdownMenu
@@ -80,18 +84,29 @@ export default function ChatList({ chats, activeChatId, onChatSelect, onOpenSett
                         />
                     )}
                 </div>
-                
-                <div className="chat-list-search">
-                    <input 
-                        type="text" 
-                        placeholder="Search" 
-                        className="search-input" 
-                    />
-                </div>
-
             </div>
 
-            <div className="chat-list-scroll">
+            <div className={styles["chat-list-heading"]}>
+                <div>
+                    <h1>Messages</h1>
+                    <p>Your conversations, all in one place.</p>
+                </div>
+                {/*TODO: add unread messages later*/}
+                <span className={styles["chat-count"]}>{chats.length}</span>
+            </div>
+
+            <div className={styles["chat-list-header"]}>
+                <div className={styles["chat-list-search"]}>
+                    <input 
+                        type="text" 
+                        placeholder="Search conversations" 
+                        className={styles["search-input"]}
+                        aria-label="Search conversations"
+                    />
+                </div>
+            </div>
+
+            <div className={styles["chat-list-scroll"]}>
                 {chats.map((chat) => (
                     <ChatListItem 
                         key={chat.id} 

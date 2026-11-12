@@ -1,0 +1,26 @@
+.message-list-container {
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 62.5rem);
+    height: 100%;
+    min-height: 0;
+    margin: 0 auto;
+    padding: 1.125rem 1.5rem 0.5rem;
+}
+
+.messages-scroll-area {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1875rem;
+    padding: 0.5rem 0.3125rem 0.75rem 0;
+}
+
+.messages-scroll-area::-webkit-scrollbar { width: 0.3125rem; }
+.messages-scroll-area::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 6.1875rem; }
+
+@media screen and (max-width: 48rem) {
+    .message-list-container { padding: 0.75rem 0.875rem 0.375rem; }
+}

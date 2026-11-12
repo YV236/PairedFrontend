@@ -1,0 +1,29 @@
+.chat-view-messages {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+.icon-btn:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-hover);
+}
+
+.chat-not-found-state { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 2rem; text-align: center; }
+.chat-not-found-state > span { color: var(--accent-primary); font-size: 0.625rem; font-weight: 800; letter-spacing: 0.0875rem; }
+.chat-not-found-state h1 { margin: 0.75rem 0 0.5rem; color: var(--text-primary); font-size: clamp(1.625rem, 3vw, 2.375rem); letter-spacing: -0.055em; }
+.chat-not-found-state p { margin: 0; color: var(--text-secondary); font-size: 0.8125rem; }
+
+.mic-btn { background-color: var(--bg-tertiary); }

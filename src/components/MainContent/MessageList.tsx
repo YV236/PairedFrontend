@@ -1,7 +1,7 @@
 import type { MessageResponse } from "@/contracts/Response/Chat/MessageResponse";
 import PinnedMessages from "./PinnedMessages";
 import MessageBubble from "./MessageBubble";
-import "./MessageList.css";
+import styles from "./MessageList.module.css";
 
 interface MessageListProps {
     messages: MessageResponse[];
@@ -11,10 +11,10 @@ export default function MessageList({ messages }: MessageListProps) {
     const CURRENT_USER_ID = "me_123";
 
     return (
-        <div className="message-list-container">
+        <div className={styles["message-list-container"]}>
             <PinnedMessages />
 
-            <div className="messages-scroll-area">
+            <div className={styles["messages-scroll-area"]}>
                 {messages.map((message) => {
                     const isOwnMessage = message.senderId === CURRENT_USER_ID;
                     

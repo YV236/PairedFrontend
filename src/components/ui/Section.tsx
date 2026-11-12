@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import "./Section.css";
+import styles from "./Section.module.css";
 
 export interface SectionItemData {
     icon: ReactNode;
@@ -14,18 +14,18 @@ interface SectionProps {
 
 export default function Section({ items }: SectionProps) {
     return (
-        <div className="section-container">
+        <div className={styles["section-container"]}>
             {items.map((item, index) => (
                 <div
                     key={index} 
-                    className="section-item"
+                    className={styles["section-item"]}
                     onClick={() => {
                         item.onClick();
                     }}
                 >
-                    <div className="section-item-icon">{item.icon}</div>
+                    <div className={styles["section-item-icon"]}>{item.icon}</div>
                     
-                    <div className="section-item-text-container">
+                    <div className={styles["section-item-text-container"]}>
                         <span>{item.text}</span>
                         {item.underText && <small>{item.underText}</small>}
                     </div>

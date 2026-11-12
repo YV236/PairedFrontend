@@ -1,0 +1,62 @@
+.chat-view-input-area {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: min(100%, 62.5rem);
+    margin: 0 auto;
+    padding: 0.875rem 1.5rem 1.25rem;
+}
+
+.input-container {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    background: var(--bg-input);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 62.4375rem;
+    padding: 0.25rem 0.3125rem 0.25rem 1.0625rem;
+    transition: border-color 160ms ease, background 160ms ease;
+}
+
+.input-container:focus-within { border-color: var(--accent-primary); background: var(--bg-secondary); }
+
+.message-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    min-width: 0;
+    font-size: 0.8125rem;
+    outline: none;
+}
+
+.message-input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+.icon-btn:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-hover);
+}
+
+.mic-btn {
+    background-color: var(--bg-tertiary);
+}
+
+@media screen and (max-width: 48rem) {
+    .chat-view-input-area { gap: 0.125rem; padding: 0.625rem 0.5625rem max(0.75rem, env(safe-area-inset-bottom)); }
+    .input-container { padding-left: 0.75rem; }
+}

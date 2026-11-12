@@ -1,5 +1,5 @@
 import type { UserPreviewResponse } from "@/contracts/Response/ChatList/UserPreviewResponse";
-import "./FriendListItem.css";
+import styles from "./FriendListItem.module.css";
 import UserAvatar from "@/components/ui/UserAvatar";
 
 interface FriendListItemProps {
@@ -11,16 +11,16 @@ interface FriendListItemProps {
 export default function FriendListItem({ friend, isActive, onClick }: FriendListItemProps) {
     return (
         <div 
-            className={`friend-list-item ${isActive ? "active" : ""}`} 
+            className={`${styles["friend-list-item"]} ${isActive ? styles.active : ""}`}
             onClick={onClick}
         >
-            <div className="friend-avatar">
+            <div className={styles["friend-avatar"]}>
                 <UserAvatar imageUrl={friend.avatarUrl} userName={friend.nickName} />
                 
             </div>
             
-            <div className="friend-info">
-                <div className="friend-name">{friend.firstName + " " + friend.lastName}</div>
+            <div className={styles["friend-info"]}>
+                <div className={styles["friend-name"]}>{friend.firstName + " " + friend.lastName}</div>
             </div>
         </div>
     );

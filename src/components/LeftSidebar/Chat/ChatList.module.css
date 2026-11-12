@@ -1,0 +1,86 @@
+.chat-list-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+}
+
+.chat-list-brandbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1.125rem 1.125rem 0.25rem;
+    position: relative;
+}
+
+.chat-menu-anchor { position: relative; }
+
+.chat-list-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.625rem;
+    padding: 1.4375rem 1.25rem 0.75rem;
+}
+
+.chat-list-heading h1 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.375rem;
+    line-height: 1.15;
+    letter-spacing: -0.0438rem;
+    font-weight: 730;
+}
+
+.chat-list-heading p { margin: 0.3125rem 0 0; color: var(--text-secondary); font-size: 0.6875rem; }
+.chat-count { min-width: 1.6875rem; height: 1.6875rem; display: grid; place-items: center; border-radius: 50%; color: var(--accent-primary); background: var(--accent-soft); font-size: 0.6875rem; font-weight: 750; }
+
+.chat-list-header {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.25rem 1rem 0.75rem;
+    position: relative;
+}
+
+.chat-list-search {
+    display: flex;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.search-input {
+    width: 100%;
+    min-height: 2.625rem;
+    background: var(--bg-input);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 62.4375rem;
+    padding: 0 0.875rem;
+    color: var(--text-primary);
+    font-size: 0.75rem;
+    outline: none;
+    transition: border-color 160ms ease, background 160ms ease;
+}
+
+.search-input:focus { border-color: var(--accent-primary); background: var(--bg-secondary); }
+.search-input::placeholder { color: var(--text-tertiary); }
+
+.chat-list-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0.25rem 0.5625rem 0.875rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-list-scroll::-webkit-scrollbar { width: 0.3125rem; }
+.chat-list-scroll::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 6.1875rem; }
+
+@media screen and (max-width: 48rem) {
+    .chat-list-brandbar { padding: 1rem 1.125rem 0.125rem; }
+    .chat-list-heading { padding-top: 1.25rem; }
+    .chat-list-header { padding-inline: 1rem; }
+}

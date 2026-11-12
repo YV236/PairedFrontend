@@ -1,6 +1,6 @@
 import MessageList from "./MessageList";
 import { mockChats } from "@/contracts/Common/ChatMock"; 
-import "./ChatView.css";
+import styles from "./ChatView.module.css";
 import ChatViewHeader from "./ChatViewHeader";
 import MessageInput from "./MessageInput";
 
@@ -14,8 +14,10 @@ export default function ChatView({ chatId, onBack }: ChatViewProps) {
 
     if (!chatData) {
         return (
-            <div style={{ color: 'white', padding: '20px', textAlign: 'center' }}>
-                Виберіть чат для спілкування
+            <div className={styles["chat-not-found-state"]}>
+                <span>CHAT NOT FOUND</span>
+                <h1>This conversation isn’t here.</h1>
+                <p>Choose another chat from your messages.</p>
             </div>
         );
     }
@@ -30,7 +32,7 @@ export default function ChatView({ chatId, onBack }: ChatViewProps) {
                 onBack={onBack}
             />
 
-            <div className="chat-view-messages">
+            <div className={styles["chat-view-messages"]}>
                 <MessageList messages={chatData.messages} />
             </div>
 

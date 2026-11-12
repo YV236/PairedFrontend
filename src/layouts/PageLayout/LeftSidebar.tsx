@@ -1,13 +1,14 @@
 import type { ReactNode } from "react";
-import "./LeftSidebar.css"
+import styles from "./LeftSidebar.module.css";
 
 type Props = {
     children?: ReactNode;
+    className?: string;
 };
 
-export default function LeftSidebar({ children }: Props) {
+export default function LeftSidebar({ children, className }: Props) {
     return (
-        <aside className="left-sidebar">
+        <aside className={[styles["left-sidebar"], className].filter(Boolean).join(" ")}>
             {children}
         </aside>
     );

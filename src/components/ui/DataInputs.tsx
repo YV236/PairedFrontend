@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./DataInputs.css";
+import styles from "./DataInputs.module.css";
 
 export interface DataInputsItem {
     upTitle?: string;
@@ -16,17 +16,17 @@ function SingleInput({ item }: { item: DataInputsItem }) {
     const [text, setText] = useState(item.initialValue || "");
 
     return (
-        <div className="data-input-item">
-            <div className="data-input-header">
-                <span className="data-input-label">{item.upTitle}</span>
-                {item.maxSymbols && (<span className="data-input-counter">
+        <div className={styles["data-input-item"]}>
+            <div className={styles["data-input-header"]}>
+                <span className={styles["data-input-label"]}>{item.upTitle}</span>
+                {item.maxSymbols && (<span className={styles["data-input-counter"]}>
                     {item.maxSymbols - text.length}
                 </span>)}
             </div>
             
             <input
                 type="text"
-                className="data-input-field"
+                className={styles["data-input-field"]}
                 placeholder={item.insideTitle}
                 maxLength={item.maxSymbols}
                 value={text}
@@ -38,7 +38,7 @@ function SingleInput({ item }: { item: DataInputsItem }) {
 
 export default function DataInputs({ items }: DataInputsProps) {
     return (
-        <div className="data-input-container">
+        <div className={styles["data-input-container"]}>
             {items.map((item, index) => (
                 <SingleInput key={index} item={item} />
             ))}

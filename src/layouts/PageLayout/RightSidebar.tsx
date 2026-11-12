@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import "./RightSideBar.css"
+import styles from "./RightSideBar.module.css";
 
 type Props = {
     children?: ReactNode;
@@ -7,7 +7,7 @@ type Props = {
 
 export default function RightSidebar({ children }: Props) {
     return (
-        <aside className="right-sidebar">
+        <aside className={styles["right-sidebar"]}>
             {children}
         </aside>
     );

@@ -1,4 +1,4 @@
-import "./UserAvatar.css";
+import styles from "./UserAvatar.module.css";
 
 interface UserAvatarProps {
     imageUrl?: string;
@@ -6,7 +6,7 @@ interface UserAvatarProps {
 }
 
 const getDynamicGradient = (name: string) => {
-    if (!name) return "linear-gradient(135deg, #e0e0e0, #bdbdbd)";
+    if (!name) return "linear-gradient(135deg, #a7f078, #55c27f)";
     
     let hash = 0;
     for (let i = 0; i < name.length; i++) {
@@ -45,13 +45,13 @@ export default function UserAvatar({ imageUrl, userName }: UserAvatarProps) {
 
     return (
         <div 
-            className="avatar-section"
+            className={styles["avatar-section"]}
             style={!imageUrl ? { background: backgroundGradient } : undefined}
         >
             {imageUrl ? (
-                <img src={imageUrl} alt={userName} className="avatar-image" />
+                <img src={imageUrl} alt={userName} className={styles["avatar-image"]} />
             ) : (
-                <span className="avatar-initial">{initials}</span>
+                <span className={styles["avatar-initial"]}>{initials}</span>
             )}
         </div>
     );

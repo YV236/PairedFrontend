@@ -3,7 +3,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import RoundButton from "../ui/RoundButton";
 import UserAvatar from "../ui/UserAvatar";
-import "./ChatViewHeader.css";
+import styles from "./ChatViewHeader.module.css";
 
 interface ChatViewHeaderProps {
     imageURL?: string;
@@ -16,23 +16,23 @@ interface ChatViewHeaderProps {
 export default function ChatViewHeader({ imageURL, firstName, lastName, nickName, onBack }: ChatViewHeaderProps) {
 
     return (
-        <header className="chat-view-header">
-            <div className="header-info">
+        <header className={styles["chat-view-header"]}>
+            <div className={styles["header-info"]}>
                 {onBack && (
-                    <div className="mobile-back-btn">
+                    <div className={styles["mobile-back-btn"]}>
                         <RoundButton icon={<FaLongArrowAltLeft />} onClick={onBack} />
                     </div>
                 )}
                 
-                <div className="header-avatar">
+                <div className={styles["header-avatar"]}>
                     <UserAvatar imageUrl={imageURL} userName={firstName ?? nickName} />
                 </div>
-                <div className="header-text">
-                    <h2 className="header-title">{firstName + " " + lastName}</h2>
-                    <span className="header-subtitle">last seen recently</span>
+                <div className={styles["header-text"]}>
+                    <h2 className={styles["header-title"]}>{firstName + " " + lastName}</h2>
+                    <span className={styles["header-subtitle"]}>last seen recently</span>
                 </div>
             </div>
-            <div className="header-actions">
+            <div className={styles["header-actions"]}>
                 <RoundButton icon={<HiMagnifyingGlass />} onClick={() => console.log("Search this chat opened")} />
                 <RoundButton icon={<BsThreeDotsVertical />} onClick={() => console.log("More actions opened")} />
             </div>

@@ -10,7 +10,7 @@ import { TbDotsVertical } from "react-icons/tb";
 import { useState } from "react";
 import DropdownMenu, { type DropdownMenuItem } from "@/components/ui/DropdownMenu";
 import { IoLogOutOutline } from "react-icons/io5";
-import "./Settings.css";
+import styles from "./Settings.module.css";
 
 interface SettingsProps {
     userName: string;
@@ -72,15 +72,16 @@ export default function Settings({
 
     return (
         <>
-            <div className="settings-header">
-                <div className="settings-header" style={{padding: 0}}>
+            <div className={styles["settings-header"]}>
+                <div className={styles["settings-title-group"]}>
                     <RoundButton 
                         icon={<FaLongArrowAltLeft />}
                         onClick={onBack}
+                        ariaLabel="Go back"
                     />
-                    <span style={{marginLeft: "1rem"}}> Settings </span>
+                    <span> Settings </span>
                 </div>
-                <div className="settings-header-actions">
+                <div className={styles["settings-header-actions"]}>
                     <RoundButton 
                         icon={<GoPencil />}
                         onClick={()=>console.log("pencil click")}
@@ -101,10 +102,10 @@ export default function Settings({
                 </div>
             </div>
 
-            <div className="settings-profile">
-                <div className="settings-avatar"><UserAvatar userName={firstName ?? userName}/></div>
-                <div className="settings-name">{firstName} {lastName}</div>
-                <div className="settings-status">Online</div>{/*Add online status in future*/}
+            <div className={styles["settings-profile"]}>
+                <div className={styles["settings-avatar"]}><UserAvatar userName={firstName ?? userName}/></div>
+                <div className={styles["settings-name"]}>{firstName} {lastName}</div>
+                <div className={styles["settings-status"]}>Online</div>{/*Add online status in future*/}
             </div>
 
             <Section items={profileData}/>

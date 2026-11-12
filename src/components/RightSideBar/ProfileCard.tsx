@@ -1,6 +1,6 @@
 import { RxCross1 } from "react-icons/rx";
 import RoundButton from "../ui/RoundButton";
-import "./ProfileCard.css";
+import styles from "./ProfileCard.module.css";
 import { GoPencil } from "react-icons/go";
 import UserAvatar from "../ui/UserAvatar";
 import type { ReactNode } from "react";
@@ -34,26 +34,26 @@ export default function ProfileCard({
     onEdit
 }: ProfileCardProps) {
     return (
-        <div className="profile-card-container">
-            <div className="profile-header">
+        <div className={styles["profile-card-container"]}>
+            <div className={styles["profile-header"]}>
                 <RoundButton icon={<RxCross1 />} onClick={onClose} />
-                <h2 className="profile-header-title">{title}</h2>
+                <h2 className={styles["profile-header-title"]}>{title}</h2>
                 <RoundButton icon={<GoPencil />} onClick={onEdit} />
             </div>
 
-            <div className="profile-main-info">
-                <div className="profile-avatar"><UserAvatar userName={name} /></div>
-                <h3 className="profile-name">{name}</h3>
-                <span className="profile-status">{status}</span>
+            <div className={styles["profile-main-info"]}>
+                <div className={styles["profile-avatar"]}><UserAvatar userName={name} /></div>
+                <h3 className={styles["profile-name"]}>{name}</h3>
+                <span className={styles["profile-status"]}>{status}</span>
             </div>
 
             <Section items={infoItems} />
 
-            <div className="profile-tabs">
+            <div className={styles["profile-tabs"]}>
                 {tabs.map((tab, index) => (
                     <button 
                         key={index} 
-                        className={`profile-tab ${index === 0 ? "active" : ""}`}
+                        className={`${styles["profile-tab"]} ${index === 0 ? styles.active : ""}`}
                     >
                         {tab}
                     </button>

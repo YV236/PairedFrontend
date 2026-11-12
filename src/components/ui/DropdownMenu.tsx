@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import "./DropdownMenu.css";
+import styles from "./DropdownMenu.module.css";
 
 export interface DropdownMenuItem {
     icon: ReactNode;
@@ -13,22 +13,22 @@ interface DropdownMenuProps {
     align?: "left" | "right";
 }
 
-export default function DropdownMenu({ items, onClose, align = "left" }: DropdownMenuProps) {
+export default function DropdownMenu({ items, onClose, align = "right" }: DropdownMenuProps) {
     return (
         <>
-            <div className="menu-backdrop" onClick={onClose} />
+            <div className={styles["menu-backdrop"]} onClick={onClose} />
             
-            <div className={`dropdown-menu align-${align}`}>
+            <div className={`${styles["dropdown-menu"]} ${styles[`align-${align}`]}`}>
                 {items.map((item, index) => (
                     <div 
                         key={index} 
-                        className="dropdown-item" 
+                        className={styles["dropdown-item"]}
                         onClick={() => {
                             item.onClick();
                             onClose();
                         }}
                     >
-                        <div className="dropdown-item-icon">{item.icon}</div>
+                        <div className={styles["dropdown-item-icon"]}>{item.icon}</div>
                         <span>{item.title}</span>
                     </div>
                 ))}

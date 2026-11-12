@@ -1,0 +1,20 @@
+.left-sidebar {
+    flex: 0 0 19.375rem;
+    min-width: 16.875rem;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-xl);
+}
+
+@media screen and (max-width: 68.75rem) {
+    .left-sidebar { flex-basis: 17.5rem; }
+}
+
+@media screen and (max-width: 48rem) {
+    .left-sidebar { flex: 1 1 100%; width: 100%; min-width: 0; border: 0; border-radius: 0; }
+}

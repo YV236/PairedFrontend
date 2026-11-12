@@ -16,8 +16,8 @@ export default function FriendProfile({ onClose }: Props) {
             status="last seen recently"
             avatarIcon="🌊"
             infoItems={[
-                { icon: "@", value: "@v_shh1", label: "Username" },
-                { icon: "🔔", value: "Notifications", label: "", rightElement: <span>🔘</span> },
+                { icon: "@", text: "@v_shh1", underText: "Username", onClick: () => {} },
+                { icon: "🔔", text: "Notifications", underText: "Manage alerts", onClick: () => {} },
             ]}
             tabs={["Media", "Files", "Links", "Music", "Voice"]}
             onClose={onClose}

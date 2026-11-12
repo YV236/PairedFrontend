@@ -1,21 +1,24 @@
 import type { ReactNode } from "react";
-import "./RoundButton.css";
+import styles from "./RoundButton.module.css";
 
 interface RoundButtonProps {
     icon: ReactNode;
     onClick: () => void;
     backgroundColor?: string;
+    ariaLabel?: string;
 }
 
 export default function RoundButton({ 
     icon, 
     onClick, 
-    backgroundColor = "transparent"
+    backgroundColor = "transparent",
+    ariaLabel,
 }: RoundButtonProps) {
     return (
         <button 
-            className="round-button" 
+            className={styles["round-button"]}
             onClick={onClick}
+            aria-label={ariaLabel}
             style={{ backgroundColor }}
         >
             {icon}

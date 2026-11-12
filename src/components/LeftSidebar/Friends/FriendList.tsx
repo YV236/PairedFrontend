@@ -1,9 +1,10 @@
 import { useState } from "react";
 import type { UserPreviewResponse } from "@/contracts/Response/ChatList/UserPreviewResponse";
 import FriendListItem from "./FriendListItem"
+import BrandButton from "@/components/ui/BrandButton";
 import RoundButton from "@/components/ui/RoundButton";
 import { FaLongArrowAltLeft } from "react-icons/fa";
-import "./FriendList.css";
+import styles from "./FriendList.module.css";
 
 interface FriendListProps {
     friends: UserPreviewResponse[];
@@ -22,28 +23,42 @@ export default function FriendList({ friends, onFriendSelect, onBack }: FriendLi
     };
 
     return (
-        <div className="friend-list-container">
-            <div className="friend-list-header-search">
+        <div className={styles["friend-list-container"]}>
+            <div className={styles["friend-list-brandbar"]}>
+                <BrandButton size="compact" />
+            </div>
+            <div className={styles["friend-list-heading"]}>
+                <h1>Friends</h1>
+                <p>Good music is better shared.</p>
+            </div>
+            <div className={styles["friend-list-header-search"]}>
                 <RoundButton 
                 icon={<FaLongArrowAltLeft />} 
                 onClick={onBack}  
+                ariaLabel="Back to messages"
                 />
                 <input 
                     type="text" 
                     placeholder="Search contacts..." 
-                    className="friend-search-input" 
+                    className={styles["friend-search-input"]}
                 />
             </div>
 
-            <div className="friend-list-scroll">
-                {friends.map((friend) => (
+            <div className={styles["friend-list-scroll"]}>
+                {friends.length > 0 ? friends.map((friend) => (
                     <FriendListItem 
                         key={friend.id}
                         friend={friend}
                         isActive={friend.id === activeFriendId}
                         onClick={() => handleSelectFriend(friend.id)}
                     />
-                ))}
+                )) : (
+                    <div className={styles["friend-list-empty"]}>
+                        <span>♫</span>
+                        <strong>No friends here yet</strong>
+                        <p>Your people will show up here when you connect.</p>
+                    </div>
+                )}
             </div>
         </div>
     );
