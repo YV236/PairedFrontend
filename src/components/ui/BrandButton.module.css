@@ -1,0 +1,45 @@
+.brand-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: inherit;
+    font-size: 1.5rem;
+    font-weight: 790;
+    letter-spacing: -0.075rem;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.brand-button-mark {
+    width: 2.0625rem;
+    height: 2rem;
+    flex: 0 0 auto;
+    object-fit: contain;
+}
+
+.brand-button--compact {
+    gap: 0.5625rem;
+    font-size: 1.375rem;
+    font-weight: 800;
+    letter-spacing: -0.0625rem;
+}
+
+.brand-button--compact .brand-button-mark { width: 1.875rem; height: 1.8125rem; }
+
+.brand-button--footer {
+    gap: 0.625rem;
+    font-size: 1.1875rem;
+    font-weight: 790;
+    letter-spacing: -0.075rem;
+    color: var(--text-primary);
+}
+
+.brand-button--footer .brand-button-mark { width: 1.6875rem; height: 1.625rem; }
+
+.brand-button:hover .brand-button-name { color: var(--accent-primary); }
+
+@media (max-width: 40rem) {
+    .brand-button--default { gap: 0.5625rem; font-size: 1.375rem; letter-spacing: -0.0625rem; }
+    .brand-button--default .brand-button-mark { width: 1.8125rem; height: 1.75rem; }
+}

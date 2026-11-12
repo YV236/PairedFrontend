@@ -1,0 +1,20 @@
+.not-found-page {
+    min-height: 100vh;
+    padding: 2rem max(1.5rem, calc((100vw - 80rem) / 2));
+    color: var(--text-primary);
+    background: radial-gradient(ellipse at 50% 45%, rgba(66, 123, 80, 0.2), transparent 34rem), var(--bg-primary);
+}
+
+.not-found-content {
+    min-height: calc(100vh - 6rem);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 39.375rem;
+    margin-inline: auto;
+}
+
+.not-found-code { color: var(--accent-primary); font-size: 0.6875rem; font-weight: 800; letter-spacing: 0.0875rem; }
+.not-found-content h1 { margin: 1rem 0 0.75rem; color: var(--text-primary); font-size: clamp(2.625rem, 7vw, 4.5rem); line-height: 0.98; letter-spacing: -0.07em; }
+.not-found-content p { max-width: 26.875rem; margin-bottom: 1.5625rem; color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.7; }
